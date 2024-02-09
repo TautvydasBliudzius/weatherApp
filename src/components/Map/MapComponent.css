@@ -1,0 +1,6 @@
+.mapComponentContainer {
+   
+    height: 450px;
+    width: 100%;
+    z-index: 1;
+}

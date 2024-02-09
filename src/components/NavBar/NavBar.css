@@ -1,0 +1,21 @@
+.navBarContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 5rem; /* Adjust height automatically */
+    padding: 1rem 2rem;
+    background-color: rgb(236, 236, 236);
+    margin-bottom: 20rem;
+}
+.navBarContainer img {
+    width: 4rem;
+}
+.dateRangeContainer {
+    position: relative;
+}
+
+.dateRangeContainer .dateInput {
+    position: relative;
+    top: 100%; /* Position below the parent container */
+    left: 0;
+    z-index: 1; /* Ensure it's above other content */
+}

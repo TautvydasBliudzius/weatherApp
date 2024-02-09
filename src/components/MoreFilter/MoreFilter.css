@@ -1,0 +1,89 @@
+.ddMenu,
+.dropbtn {
+  border-radius: 5px;
+  background-color: white;
+}
+
+.ddMenu {
+  position: absolute;
+  margin-right: 2rem;
+  right: 0;
+}
+
+.ddMenuItem,
+.dropbtn {
+  display: flex;
+  flex-direction: row;
+}
+
+.dropbtn {
+  justify-content: space-between;
+  color: white;
+  background-color: #3f3f42;
+  width: 12rem;
+  min-width: 3rem;
+  min-height: 3rem;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 1rem;
+  margin: 0.1rem;
+  text-align: left;
+}
+
+.closeBtn {
+  margin-left: 1rem;
+}
+
+.dropdown-content div {
+  padding: 12px;
+  display: block;  
+}
+
+.ddMenuItem {
+  background-color: rgb(231, 231, 231);
+  border-radius: 5px;
+  width:12rem;
+  align-items: center;
+  
+}
+
+.ddMenuItem img {
+  width: 3rem;
+  margin: 0.5rem 1rem;
+}
+
+.ddMenuItem:hover {
+  background-color: rgb(237, 245, 247);
+}
+
+input[type="checkbox"] {
+  accent-color: white;
+}
+
+#moreText {
+  font-weight: bold;
+}
+
+.selectedOptions {
+  font-weight: lighter;
+  margin-top: 0.5rem;
+  color: rgb(219, 219, 219);
+}
+
+.arrowUp,
+.arrowDown {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrowUp {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.arrowDown {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
