@@ -13,7 +13,7 @@ const markerIcon = new L.Icon({
 
 const MapComponent = ({ positions, setPositions }) => {
   const ZOOM_LEVEL = 10;
-  
+
   function AddMarkerToClick() {
     useMapEvents({
       dblclick(e) {
@@ -32,14 +32,14 @@ const MapComponent = ({ positions, setPositions }) => {
     <div className="mapComponentContainer">
       <MapContainer center={[54.898521, 23.903597]} zoom={ZOOM_LEVEL} style={{ height: '400px', width: '100%' }} doubleClickZoom={false}>
         <TileLayer url="https://api.maptiler.com/maps/outdoor-v2/256/{z}/{x}/{y}.png?key=ozN3bbKTDDtczKLR79uI" />
-        {positions?.map((position) => {
-          return (
-            <Marker position={position} icon={markerIcon} >
-              <Popup>
-                <button onClick={() => deleteSelectedMarker(position)}>Ištrinti</button>
-              </Popup>
-            </Marker>
-          )})}
+        {positions?.map((position, index) => (
+          <Marker key={index} position={position} icon={markerIcon}>
+            <Popup>
+              <button onClick={() => deleteSelectedMarker(position)}>Delete</button>
+            </Popup>
+          </Marker>
+        ))}
+
         <AddMarkerToClick />
       </MapContainer>
     </div>

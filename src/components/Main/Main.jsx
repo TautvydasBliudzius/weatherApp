@@ -9,7 +9,6 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
     const [chartOptions, setChartOptions] = useState([]);
 
     useEffect(() => {
-        console.log(chartOptions)
         if (positions.length > 0 && dateRange && selectedMoreOptions.length > 0) {
             getWeather();
         }
@@ -26,22 +25,22 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
                 .then((data) => {
                     const newSeries = selectedMoreOptions.map((option) => {
                         switch (option) {
-                            case 'Temperatura':
+                            case 'Temperature':
                                 return {
                                     name: 'Temperature',
                                     data: data.hourly.temperature_2m
                                 };
-                            case 'Drėgmė':
+                            case 'Humidity':
                                 return {
                                     name: 'Humidity',
                                     data: data.hourly.relative_humidity_2m
                                 };
-                            case 'Vėjo greitis':
+                            case 'Wind speed':
                                 return {
                                     name: 'Wind speed',
                                     data: data.hourly.wind_speed_10m
                                 };
-                            case 'Matomumas':
+                            case 'Visibility':
                                 return {
                                     name: 'Visibility',
                                     data: data.hourly.visibility
@@ -50,7 +49,7 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
                                 return null;
                         }
                     }).filter(Boolean);
-    
+                    console.log(newSeries)
                     return {
                         title: {
                             text: `Chart: ${lat}, ${lng}`

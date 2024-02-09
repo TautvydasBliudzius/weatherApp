@@ -11,7 +11,6 @@ const MoreFilter = ({ selectedMoreOptions, setSelectedMoreOptions}) => {
 
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
-    console.log(selectedMoreOptions);
   };
 
   const closeOpenDropDown = (e) => {

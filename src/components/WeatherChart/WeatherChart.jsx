@@ -5,6 +5,7 @@ import HighchartsReact from 'highcharts-react-official'
 
 const WeatherChart = ({ options }) => {
 
+  console.log(options)
   return (
     <div>
       <HighchartsReact highcharts={Highcharts} options={options} />
