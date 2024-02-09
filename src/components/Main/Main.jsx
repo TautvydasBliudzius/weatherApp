@@ -7,19 +7,32 @@ import './Main.css';
 const Main = ({ selectedMoreOptions, dateRange }) => {
     const [positions, setPositions] = useState([]);
     const [chartOptions, setChartOptions] = useState([]);
+    const [isValidDateRange, setIsValidDateRange] = useState(true)
+
+    const maxDate = new Date();
+    maxDate.setDate(maxDate.getDate() + 15);
+
+    const minDate = new Date();
+    minDate.setMonth(minDate.getMonth() - 3);
 
     useEffect(() => {
-        if (positions.length > 0 && dateRange && selectedMoreOptions.length > 0) {
-            getWeather();
+        if (dateRange[0].startDate < minDate || dateRange[0].endDate > maxDate) {
+            setIsValidDateRange(false);
+        } else {
+            setIsValidDateRange(true);
+            if (positions.length > 0 && dateRange && selectedMoreOptions.length > 0) {
+                getWeather();
+            }
         }
     }, [positions, dateRange, selectedMoreOptions]);
-    
+
 
     const getWeather = async () => {
-        Promise.all(positions.map((position) => {
+        Promise.all(positions.map(async (position) => {
             const { lat, lng } = position || { lat: '', lng: '' };
+            const positionName = await getPositionName(lat, lng);
             const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,visibility&start_date=${format(dateRange[0].startDate, "yyyy-MM-dd")}&end_date=${format(dateRange[0].endDate, "yyyy-MM-dd")}`;
-    
+
             return fetch(url)
                 .then((response) => response.json())
                 .then((data) => {
@@ -54,7 +67,7 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
                             enabled: false
                         },
                         title: {
-                            text: `Chart: ${lat}, ${lng}`
+                            text: `Chart: ${positionName}`
                         },
                         series: newSeries
                     };
@@ -68,6 +81,22 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
         });
     };
 
+    const getPositionName = async (lat, lng) => {
+        try {
+            const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`);
+            const data = await response.json();
+            if (data.address) {
+                const city = data.address.city || data.address.town || data.address.village || data.address.hamlet || data.address.suburb || data.address.locality;
+                return city || data.address.state || data.address.country;
+            }
+            return 'Unknown Position';
+        } catch (error) {
+            console.error('Error fetching position name:', error);
+            return 'Unknown Position';
+        }
+    };
+
+
     function removeMarkerToClick() {
         setPositions([]);
         setChartOptions([]);
@@ -76,18 +105,27 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
     return (
         <div className="mainContainer">
             <MapComponent positions={positions} setPositions={setPositions} />
-            {positions.length > 0 && selectedMoreOptions.length > 0 && (
+            {positions.length === 1 && (
+                <div>
+                    <button onClick={removeMarkerToClick}>Remove marker</button>
+                </div>
+            )}
+            {positions.length > 1 && (
                 <div>
                     <button onClick={removeMarkerToClick}>Remove all markers</button>
                 </div>
             )}
-            {(positions.length > 0 && chartOptions.length === positions.length) && (
-                positions.map((position, index) => (
-                    <div key={index}>
-                        <WeatherChart options={chartOptions[index]} />
-                    </div>
-                ))
-            )}
+            {isValidDateRange &&
+                <>
+                    {(positions.length > 0 && chartOptions.length === positions.length) && (
+                        positions.map((position, index) => (
+                            <div key={index}>
+                                <WeatherChart options={chartOptions[index]} />
+                            </div>
+                        ))
+                    )}
+                </>
+            }
         </div>
     );
 };

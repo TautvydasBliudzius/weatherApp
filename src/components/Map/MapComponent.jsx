@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from 'react-leaf
 import 'leaflet/dist/leaflet.css';
 import './MapComponent.css'
 import L from 'leaflet'
+import { useEffect, useState } from 'react';
 
 
 const markerIcon = new L.Icon({
@@ -11,10 +12,11 @@ const markerIcon = new L.Icon({
   popupAnchor: [3, -46],
 });
 
-const MapComponent = ({ positions, setPositions }) => {
-  const ZOOM_LEVEL = 10;
 
-  function AddMarkerToClick() {
+const MapComponent = ({ positions, setPositions }) => {
+  const ZOOM_LEVEL = 10;  
+
+  const AddMarkerToClick = () => {
     useMapEvents({
       dblclick(e) {
         setPositions([...positions, e.latlng]);

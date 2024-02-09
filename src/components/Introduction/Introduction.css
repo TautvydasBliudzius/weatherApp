@@ -1,0 +1,17 @@
+.introductionContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .introductionTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .introductionContent {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  

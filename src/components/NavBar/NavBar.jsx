@@ -8,7 +8,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 
-const NavBar = ({ dateRange, setDateRange, selectedMoreOptions, setSelectedMoreOptions}) => {
+const NavBar = ({ dateRange, setDateRange, selectedMoreOptions, setSelectedMoreOptions }) => {
     const [openDate, setOpenDate] = useState(false);
 
     const dateRangeRef = useRef(null);
@@ -35,6 +35,8 @@ const NavBar = ({ dateRange, setDateRange, selectedMoreOptions, setSelectedMoreO
         <div className="navBarContainer">
             <img src={logo} alt="logo" />
             <div className="dateRangeContainer" ref={dateRangeRef}>
+                {dateRange[0].startDate < minDate && <div className="notError">You cannot select a date earlier than three months from now</div>}
+                {dateRange[0].endDate > maxDate && <div className="notError">You cannot select a date later than fifteen days from now</div>}
                 <div>Select date</div>
                 <input
                     type="text"
@@ -50,12 +52,11 @@ const NavBar = ({ dateRange, setDateRange, selectedMoreOptions, setSelectedMoreO
                             onChange={item => setDateRange([item.selection])}
                             moveRangeOnFirstSelection={false}
                             ranges={dateRange}
-                            minDate={minDate}
-                            maxDate={maxDate}
                             className="dateInput"
                         />
                     </div>
                 }
+
             </div>
             <MoreFilter
                 selectedMoreOptions={selectedMoreOptions}

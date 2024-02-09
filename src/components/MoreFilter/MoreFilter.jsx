@@ -72,12 +72,12 @@ const MoreFilter = ({ selectedMoreOptions, setSelectedMoreOptions}) => {
         )}
         {selectedMoreOptions.length === 0 && !isDropdownVisible && (
           <div className="closeBtn" onClick={() => setSelectedMoreOptions([])}>
-            <i class="arrowDown"></i>
+            <i className="arrowDown"></i>
           </div>
         )}
         {selectedMoreOptions.length === 0 && isDropdownVisible && (
           <div className="closeBtn" onClick={() => setSelectedMoreOptions([])}>
-            <i class="arrowUp"></i>
+            <i className="arrowUp"></i>
           </div>
         )}
       </button>

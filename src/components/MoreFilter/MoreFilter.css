@@ -6,7 +6,7 @@
 
 .ddMenu {
   position: absolute;
-  margin-right: 2rem;
+  margin-right: 1rem;
   right: 0;
 }
 
@@ -20,7 +20,7 @@
   justify-content: space-between;
   color: white;
   background-color: #3f3f42;
-  width: 12rem;
+  width: 14rem;
   min-width: 3rem;
   min-height: 3rem;
   font-size: 13px;
@@ -42,7 +42,7 @@
 .ddMenuItem {
   background-color: rgb(231, 231, 231);
   border-radius: 5px;
-  width:12rem;
+  width:14rem;
   align-items: center;
   
 }
