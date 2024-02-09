@@ -23,23 +23,23 @@ const MoreFilter = ({ selectedMoreOptions, setSelectedMoreOptions}) => {
 
   const options = [
     {
-      value: "Temperatura",
-      label: "Temperatūra",
+      value: "Temperature",
+      label: "Temperature",
       image: temperatureIcon,
     },
     {
-      value: "Drėgmė",
-      label: "Drėgmė",
+      value: "Humidity",
+      label: "Humidity",
       image: humidityIcon,
     },
     {
-      value: "Vėjo greitis",
-      label: "Vėjo greitis",
+      value: "Wind speed",
+      label: "Wind speed",
       image: windIcon,
     },
     {
-      value: "Matomumas",
-      label: "Matomumas",
+      value: "Visibility",
+      label: "Visibility",
       image: visibilityIcon
     }
   ];
@@ -61,7 +61,7 @@ const MoreFilter = ({ selectedMoreOptions, setSelectedMoreOptions}) => {
     <div className="dropdown" ref={catMenu}>
       <button onClick={toggleDropdown} className="dropbtn">
         <div>
-          <div id="moreText">Pasirinkti duomenis</div>
+          <div id="moreText">Select options</div>
           <div className="selectedOptions">
             {selectedMoreOptions.join(", ")}
           </div>

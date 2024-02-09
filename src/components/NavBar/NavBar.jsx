@@ -35,7 +35,7 @@ const NavBar = ({ dateRange, setDateRange, selectedMoreOptions, setSelectedMoreO
         <div className="navBarContainer">
             <img src={logo} alt="logo" />
             <div className="dateRangeContainer" ref={dateRangeRef}>
-                <div>Pasirinkite datą</div>
+                <div>Select date</div>
                 <input
                     type="text"
                     placeholder={`${dateRange[0].startDate.toLocaleDateString()} - ${dateRange[0].endDate.toLocaleDateString()}`}

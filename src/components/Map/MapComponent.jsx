@@ -2,6 +2,8 @@ import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from 'react-leaf
 import 'leaflet/dist/leaflet.css';
 import './MapComponent.css'
 import L from 'leaflet'
+
+
 const markerIcon = new L.Icon({
   iconUrl: require("../../images/marker.png"),
   iconSize: [25, 25],
@@ -11,7 +13,7 @@ const markerIcon = new L.Icon({
 
 const MapComponent = ({ positions, setPositions }) => {
   const ZOOM_LEVEL = 10;
-
+  
   function AddMarkerToClick() {
     useMapEvents({
       dblclick(e) {
@@ -28,7 +30,7 @@ const MapComponent = ({ positions, setPositions }) => {
 
   return (
     <div className="mapComponentContainer">
-      <MapContainer center={[54.898521, 23.903597]} zoom={ZOOM_LEVEL} style={{ height: '400px', width: '100%' }}>
+      <MapContainer center={[54.898521, 23.903597]} zoom={ZOOM_LEVEL} style={{ height: '400px', width: '100%' }} doubleClickZoom={false}>
         <TileLayer url="https://api.maptiler.com/maps/outdoor-v2/256/{z}/{x}/{y}.png?key=ozN3bbKTDDtczKLR79uI" />
         {positions?.map((position) => {
           return (

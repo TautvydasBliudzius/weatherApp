@@ -28,22 +28,22 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
                         switch (option) {
                             case 'Temperatura':
                                 return {
-                                    name: 'Temperatura',
+                                    name: 'Temperature',
                                     data: data.hourly.temperature_2m
                                 };
                             case 'Drėgmė':
                                 return {
-                                    name: 'Drėgmė',
+                                    name: 'Humidity',
                                     data: data.hourly.relative_humidity_2m
                                 };
                             case 'Vėjo greitis':
                                 return {
-                                    name: 'Vėjo greitis',
+                                    name: 'Wind speed',
                                     data: data.hourly.wind_speed_10m
                                 };
                             case 'Matomumas':
                                 return {
-                                    name: 'Matomumas',
+                                    name: 'Visibility',
                                     data: data.hourly.visibility
                                 };
                             default:
@@ -53,7 +53,7 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
     
                     return {
                         title: {
-                            text: `Grafikas: ${lat}, ${lng}`
+                            text: `Chart: ${lat}, ${lng}`
                         },
                         series: newSeries
                     };
@@ -77,8 +77,7 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
             <MapComponent positions={positions} setPositions={setPositions} />
             {positions.length > 0 && selectedMoreOptions.length > 0 && (
                 <div>
-                    <button onClick={removeMarkerToClick}>Pašalinti žymeklius</button>
-                    <button onClick={getWeather}>Weather</button>
+                    <button onClick={removeMarkerToClick}>Remove all markers</button>
                 </div>
             )}
             {(positions.length > 0 && selectedMoreOptions.length > 0) && (
