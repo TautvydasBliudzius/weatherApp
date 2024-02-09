@@ -15,7 +15,7 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
     }, [positions, dateRange, selectedMoreOptions]);
     
 
-    const getWeather = () => {
+    const getWeather = async () => {
         Promise.all(positions.map((position) => {
             const { lat, lng } = position || { lat: '', lng: '' };
             const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,visibility&start_date=${format(dateRange[0].startDate, "yyyy-MM-dd")}&end_date=${format(dateRange[0].endDate, "yyyy-MM-dd")}`;
@@ -49,8 +49,10 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
                                 return null;
                         }
                     }).filter(Boolean);
-                    console.log(newSeries)
                     return {
+                        accessibility: {
+                            enabled: false
+                        },
                         title: {
                             text: `Chart: ${lat}, ${lng}`
                         },
@@ -79,7 +81,7 @@ const Main = ({ selectedMoreOptions, dateRange }) => {
                     <button onClick={removeMarkerToClick}>Remove all markers</button>
                 </div>
             )}
-            {(positions.length > 0 && selectedMoreOptions.length > 0) && (
+            {(positions.length > 0 && chartOptions.length === positions.length) && (
                 positions.map((position, index) => (
                     <div key={index}>
                         <WeatherChart options={chartOptions[index]} />
