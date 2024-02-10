@@ -24,3 +24,7 @@
     padding: 0.5rem;
     border-radius: 5px;
 }
+
+.moreAndLogOut button {
+    margin-top: 0.1rem;
+}

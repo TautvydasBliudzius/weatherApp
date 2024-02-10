@@ -8,7 +8,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 
-const NavBar = ({ dateRange, setDateRange, selectedMoreOptions, setSelectedMoreOptions }) => {
+const NavBar = ({ dateRange, setDateRange, selectedMoreOptions, setSelectedMoreOptions, logout }) => {
     const [openDate, setOpenDate] = useState(false);
 
     const dateRangeRef = useRef(null);
@@ -58,10 +58,13 @@ const NavBar = ({ dateRange, setDateRange, selectedMoreOptions, setSelectedMoreO
                 }
 
             </div>
+            <div className="moreAndLogOut">
             <MoreFilter
                 selectedMoreOptions={selectedMoreOptions}
                 setSelectedMoreOptions={setSelectedMoreOptions}
             />
+            <button onClick={logout}>Log Out</button>
+            </div>
         </div>
     );
 };

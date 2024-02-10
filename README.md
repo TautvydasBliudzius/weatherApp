@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Running in Docker
+### Setup for SSL
+Use OpenSSL to generate a self signed certificate with a private key `openssl req  -nodes -new -x509  -keyout server.key -out server.cert`.
+
+### Running Docker
+Build a Docker image using the command `docker build -t weatherapp ./`
+
+Run the Docker container using the command `docker run -p 3000:443 weatherapp`
+
+You can now access the Weather App in `https://localhost:3000`
